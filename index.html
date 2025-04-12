@@ -12,19 +12,26 @@
   <body>
 
     <nav class="navbar">
-      <div class="nav-logo">MySite</div>
+      <div class="nav-logo">WorldArchitecture</div>
       <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="/favorites">Favorites</a></li>
+        <li>
+          <select id="sortBy" class="sort-dropdown">
+            <option value="">Sort By</option>
+            <option value="name">Name (A–Z)</option>
+            <option value="visitors">Visitor Count</option>
+          </select>
+        </li>
       </ul>
 
-      <form class="search-form" action="/search" method="GET">
-        <input type="text" name="q" placeholder="Search..." />
+    </nav>
+
+    <div>
+      <form class="search-form" onsubmit="return searchPlaces( event )">
+        <input type="text" name="query" placeholder="Search..." />
         <button type="submit">🔍</button>
       </form>
-    </nav>
+    </div>
     
     <div id="card-container"></div>
     <div class="card" style="display: none">

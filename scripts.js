@@ -38,22 +38,27 @@ const editCardContent = ( card, place ) => {
 // This calls the showCards() function when the page is first loaded
 document.addEventListener( "DOMContentLoaded", showCards(places) )
 
-const searchPlaces = ( queryString ) => {
+
+// ---Sort and Search functions start---
+
+const searchPlaces = ( event ) => {
     try {
 
-        let search = queryString
-        if( queryString.length > 3 )
-            search = queryString.toLowerCase()
-        else return
+        // to prevent page reload onsubmit
+        event.preventDefault()
+
+        const queryString = event.target.query.value.trim().toLowerCase()
+        //console.log( queryString )
 
         const matches = places.filter( ( place ) => {
-            place.name.toLowerCase().includes( search ) ||
-            place.country.toLowerCase().includes( search ) ||
-            place.type.toLowerCase().includes( search )
+            return (
+                place.name.toLowerCase().includes( queryString ) ||
+                place.country.toLowerCase().includes( queryString ) ||
+                place.type.toLowerCase().includes( queryString )
+            )
         })
 
-        //const matchedPlaceNames = matches.map( place => place.name )
-        return matches
+        showCards( matches )
         
     } catch ( error ) {
         console.log( error )        
@@ -63,8 +68,9 @@ const searchPlaces = ( queryString ) => {
 const sortPlacesAlphabetically = () => {
     try {        
         let sortedPlaces = [...places]
-        sortedPlaces.sort()
-        return sortedPlaces
+        sortedPlaces.sort( ( place1, place2 ) => {return place1.name.localeCompare(place2.name)} )
+        showCards( sortedPlaces )
+        //console.log( sortedPlaces )
     } catch ( error ) {
         console.log( error )
     }
@@ -74,12 +80,43 @@ const sortPlacesOnVisitorCount = () => {
     try {        
         let sortedPlaces = [...places]
         sortedPlaces.sort((a, b) => b.visitors - a.visitors)
-        return sortedPlaces
+        showCards( sortedPlaces )
+        //console.log( sortedPlaces )
     } catch ( error ) {
         console.log( error )
     }
 }
 
+// sortBy event listener
+document.getElementById( "sortBy" ).addEventListener( "change", ( event ) => {
+    try {
+        const value = event.target.value
+        //console.log( value )
+        
+
+        switch ( value ) {
+            case "name":
+                sortPlacesAlphabetically()
+                break
+            
+            case "visitors":
+                sortPlacesOnVisitorCount()
+                break
+
+            default:
+                braek
+        }
+
+    } catch ( error ) {
+        console.log( error )
+        
+    }
+})
+
+// ---Sort and Search functions end---
+
+
+// Favorites implementation start
 const addToFavorites = () => {
     try {        
         
@@ -111,3 +148,5 @@ const updateFavoritesToStorage = () => {
         console.log( error )
     }
 }
+
+// Favorites implementation end
