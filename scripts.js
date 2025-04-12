@@ -8,6 +8,9 @@ const showCards = ( placesToDisplay ) => {
     placesToDisplay.forEach( place => {
         const nextCard = templateCard.cloneNode( true ) // Copies template card
         editCardContent( nextCard, place ) // Edits card info
+        nextCard.addEventListener("click", () => { // Event listener to display details modal
+            showPlaceModal( place )
+        })
         cardContainer.appendChild( nextCard ) // Adds new card to the container
     } )
 }
@@ -15,9 +18,8 @@ const showCards = ( placesToDisplay ) => {
 
 const editCardContent = ( card, place ) => {
     card.style.display = "block"
-
-    // add id to card
-
+    card.dataset.placeId = place.id
+    
     const cardTitle = card.querySelector( ".card-title" )
     cardTitle.textContent = place.name
 
@@ -37,6 +39,67 @@ const editCardContent = ( card, place ) => {
 
 // This calls the showCards() function when the page is first loaded
 document.addEventListener( "DOMContentLoaded", showCards(places) )
+
+
+// ---Place details modal start---
+const showPlaceModal = ( place ) => {
+    document.getElementById( "modalTitle" ).textContent = place.name
+    document.getElementById( "modalCountry" ).textContent = `Country: ${place.country}`
+    document.getElementById( "modalType" ).textContent = `${place.type}`
+    document.getElementById( "modalVisitors" ).textContent = `${place.visitors} visitors`
+    document.getElementById( "modalImage" ).src = place.image
+    document.getElementById( "modalImage" ).alt = `${place.name} image`  
+    document.getElementById( "modalDetails" ).textContent = place.details
+    document.getElementById( "placeModal" ).style.display = "block"
+}
+  
+document.getElementById( "closeModal" ).addEventListener( "click", () => {
+    document.getElementById( "placeModal" ).style.display = "none"
+})
+  
+window.addEventListener( "click", ( event ) => {
+    const modal = document.getElementById( "placeModal" )
+    if ( event.target === modal ) {
+      modal.style.display = "none"
+    }
+})
+
+// ---Place details modal end---
+
+// ---Favorites implementation start--
+const addToFavorites = () => {
+    try {        
+        
+    } catch ( error ) {
+        console.log( error )
+    }
+}
+
+const deleteFromFavorites = () => {
+    try {        
+        
+    } catch ( error ) {
+        console.log( error )
+    }
+}
+
+const getFavoritesFromStorage = () => {
+    try {        
+        
+    } catch ( error ) {
+        console.log( error )
+    }
+}
+
+const updateFavoritesToStorage = () => {
+    try {        
+        
+    } catch ( error ) {
+        console.log( error )
+    }
+}
+
+// ---Favorites implementation end---
 
 
 // ---Sort and Search functions start---
@@ -114,39 +177,3 @@ document.getElementById( "sortBy" ).addEventListener( "change", ( event ) => {
 })
 
 // ---Sort and Search functions end---
-
-
-// Favorites implementation start
-const addToFavorites = () => {
-    try {        
-        
-    } catch ( error ) {
-        console.log( error )
-    }
-}
-
-const deleteFromFavorites = () => {
-    try {        
-        
-    } catch ( error ) {
-        console.log( error )
-    }
-}
-
-const getFavoritesFromStorage = () => {
-    try {        
-        
-    } catch ( error ) {
-        console.log( error )
-    }
-}
-
-const updateFavoritesToStorage = () => {
-    try {        
-        
-    } catch ( error ) {
-        console.log( error )
-    }
-}
-
-// Favorites implementation end
