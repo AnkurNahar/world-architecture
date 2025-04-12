@@ -4,14 +4,14 @@ const places = [
       country: "India",
       visitors: "7 million",
       type: "Mausoleum",
-      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Taj_Mahal-Agra.jpg/800px-Taj_Mahal-Agra.jpg"
+      image: "https://kenzly.com/wp-content/uploads/2024/08/Taj-Mahal.jpg"
     },
     {
       name: "Louvre Museum",
       country: "France",
       visitors: "10 million",
       type: "Museum",
-      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Louvre_Museum_Wikimedia_Commons.jpg/800px-Louvre_Museum_Wikimedia_Commons.jpg"
+      image: "https://media.cntraveler.com/photos/57d961ce3e6b32bf25f5ad0f/16:9/w_2240,c_limit/most-beautiful-paris-louvre-GettyImages-536267205.jpg"
     }
   ]
 
