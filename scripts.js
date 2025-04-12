@@ -1,4 +1,6 @@
-const showCards = ( placesToDisplay = places ) => {
+const showCards = ( placesToDisplay ) => {
+    //console.log(placesToDisplay)
+    
     const cardContainer = document.getElementById( "card-container" )
     cardContainer.innerHTML = ""
     const templateCard = document.querySelector( ".card" )
@@ -13,6 +15,8 @@ const showCards = ( placesToDisplay = places ) => {
 
 const editCardContent = ( card, place ) => {
     card.style.display = "block"
+
+    // add id to card
 
     const cardTitle = card.querySelector( ".card-title" )
     cardTitle.textContent = place.name
@@ -32,7 +36,7 @@ const editCardContent = ( card, place ) => {
 }
 
 // This calls the showCards() function when the page is first loaded
-document.addEventListener( "DOMContentLoaded", showCards )
+document.addEventListener( "DOMContentLoaded", showCards(places) )
 
 const searchPlaces = ( queryString ) => {
     try {
@@ -76,3 +80,34 @@ const sortPlacesOnVisitorCount = () => {
     }
 }
 
+const addToFavorites = () => {
+    try {        
+        
+    } catch ( error ) {
+        console.log( error )
+    }
+}
+
+const deleteFromFavorites = () => {
+    try {        
+        
+    } catch ( error ) {
+        console.log( error )
+    }
+}
+
+const getFavoritesFromStorage = () => {
+    try {        
+        
+    } catch ( error ) {
+        console.log( error )
+    }
+}
+
+const updateFavoritesToStorage = () => {
+    try {        
+        
+    } catch ( error ) {
+        console.log( error )
+    }
+}
