@@ -45,7 +45,7 @@ function showCards() {
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < titles.length; i++) {
+  for (let i = 0; i < 2; i++) {
     let title = titles[i];
 
     // This part of the code doesn't scale very well! After you add your
