@@ -19,6 +19,10 @@ const showCards = ( placesToDisplay ) => {
 const editCardContent = ( card, place ) => {
     card.style.display = "block"
     card.dataset.placeId = place.id
+
+    const heart = card.querySelector(".heart")
+    const isFavorite = favorites.includes( place.id )
+    heart.style.display = isFavorite ? "block" : "none"
     
     const cardTitle = card.querySelector( ".card-title" )
     cardTitle.textContent = place.name
@@ -50,6 +54,10 @@ const showPlaceModal = ( place ) => {
     document.getElementById( "modalImage" ).src = place.image
     document.getElementById( "modalImage" ).alt = `${place.name} image`  
     document.getElementById( "modalDetails" ).textContent = place.details
+
+    const favoriteButton = document.getElementById("favoriteButton")
+    favoriteButton.onclick = () => { onFaveClick( place ) }
+
     document.getElementById( "placeModal" ).style.display = "block"
 }
   
@@ -67,6 +75,21 @@ window.addEventListener( "click", ( event ) => {
 // ---Place details modal end---
 
 // ---Favorites implementation start--
+
+const onFaveClick = (place) => {
+    try {
+        if ( favorites.includes( place.id ) ) {
+            alert( `${place.name} is already in favorites.` )
+        } else {
+            favorites.push( place.id )
+            alert( `${place.name} added to favorites!` )
+        }
+        showCards( places )
+    } catch (error) {
+        console.log( error )       
+    }
+}
+
 const addToFavorites = () => {
     try {        
         
@@ -76,22 +99,6 @@ const addToFavorites = () => {
 }
 
 const deleteFromFavorites = () => {
-    try {        
-        
-    } catch ( error ) {
-        console.log( error )
-    }
-}
-
-const getFavoritesFromStorage = () => {
-    try {        
-        
-    } catch ( error ) {
-        console.log( error )
-    }
-}
-
-const updateFavoritesToStorage = () => {
     try {        
         
     } catch ( error ) {

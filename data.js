@@ -1,3 +1,4 @@
+const favorites = []
 const places = [
   {
     id: 1,
