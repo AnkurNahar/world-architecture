@@ -1,3 +1,4 @@
+let currentPage = 'home'
 const favorites = []
 const places = [
   {

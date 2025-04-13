@@ -41,8 +41,39 @@ const editCardContent = ( card, place ) => {
     cardImage.alt = `${place.name} image`
 }
 
-// This calls the showCards() function when the page is first loaded
-document.addEventListener( "DOMContentLoaded", showCards(places) )
+
+document.addEventListener( "DOMContentLoaded", () => { 
+    showCards( places ) 
+
+    const home = document.getElementById( "home" )
+    const faves = document.getElementById( "faves" )
+    const searchBar = document.getElementById( "searchWrapper" )
+    const noFaves = document.getElementById( "noFavorites" )
+
+    home.addEventListener( "click", ( event ) => {
+        event.preventDefault()
+        currentPage = 'home'
+        noFaves.style.display = "none"
+        searchBar.style.display = "block"
+        showCards( places )
+    })
+
+    faves.addEventListener( "click", ( event ) => {
+        event.preventDefault()
+        currentPage = 'favorites'
+        searchBar.style.display = "none"
+        let favoritePlaces = places.filter( place => favorites.includes( place.id ) )
+
+        if ( favoritePlaces.length > 0 ) {
+            noFaves.style.display = "none"
+        } else {
+            noFaves.style.display = "block"
+        }
+        showCards( favoritePlaces )
+
+    })
+
+} )
 
 
 // ---Place details modal start---
@@ -56,22 +87,25 @@ const showPlaceModal = ( place ) => {
     document.getElementById( "modalDetails" ).textContent = place.details
 
 
+    // deciding what to show when modal opened
     let isFave = favorites.includes( place.id )
     const favoriteButton = document.getElementById("favoriteButton")
     if ( isFave ) {
         favoriteButton.textContent = "Remove from Favorites"
-        favoriteButton.onclick = () => { 
-            deleteFromFavorites( place.id ) 
-            showCards( places )
-            favoriteButton.textContent = "Add to Favorites"
-        }
     } else {
         favoriteButton.textContent = "Add to Favorites"
-        favoriteButton.onclick = () => { 
+    }
+
+    favoriteButton.onclick = () => { 
+        isFave = favorites.includes( place.id )
+        if ( isFave ) {
+            deleteFromFavorites( place.id ) 
+            favoriteButton.textContent = "Add to Favorites"
+        } else {
             addToFavorites( place ) 
-            showCards( places )
             favoriteButton.textContent = "Remove from Favorites"
-        }
+        } 
+        showCards( places )       
     }
 
     document.getElementById( "placeModal" ).style.display = "block"
@@ -143,7 +177,7 @@ const searchPlaces = ( event ) => {
 
 const sortPlacesAlphabetically = () => {
     try {        
-        let sortedPlaces = [...places]
+        let sortedPlaces = currentPage == "home" ? [...places] : places.filter( place => favorites.includes( place.id ) )
         sortedPlaces.sort( ( place1, place2 ) => {return place1.name.localeCompare(place2.name)} )
         showCards( sortedPlaces )
         //console.log( sortedPlaces )
@@ -154,7 +188,7 @@ const sortPlacesAlphabetically = () => {
 
 const sortPlacesOnVisitorCount = () => {
     try {        
-        let sortedPlaces = [...places]
+        let sortedPlaces = currentPage == "home" ? [...places] : places.filter( place => favorites.includes( place.id ) )
         sortedPlaces.sort((a, b) => b.visitors - a.visitors)
         showCards( sortedPlaces )
         //console.log( sortedPlaces )
@@ -190,3 +224,5 @@ document.getElementById( "sortBy" ).addEventListener( "change", ( event ) => {
 })
 
 // ---Sort and Search functions end---
+
+
