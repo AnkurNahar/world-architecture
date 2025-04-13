@@ -20,9 +20,9 @@ const editCardContent = ( card, place ) => {
     card.style.display = "block"
     card.dataset.placeId = place.id
 
-    const heart = card.querySelector(".heart")
-    const isFavorite = favorites.includes( place.id )
-    heart.style.display = isFavorite ? "block" : "none"
+    const heart = card.querySelector( ".heart" )
+    const isFave = favorites.includes( place.id )
+    heart.style.display = isFave ? "block" : "none"
     
     const cardTitle = card.querySelector( ".card-title" )
     cardTitle.textContent = place.name
@@ -55,8 +55,24 @@ const showPlaceModal = ( place ) => {
     document.getElementById( "modalImage" ).alt = `${place.name} image`  
     document.getElementById( "modalDetails" ).textContent = place.details
 
+
+    let isFave = favorites.includes( place.id )
     const favoriteButton = document.getElementById("favoriteButton")
-    favoriteButton.onclick = () => { onFaveClick( place ) }
+    if ( isFave ) {
+        favoriteButton.textContent = "Remove from Favorites"
+        favoriteButton.onclick = () => { 
+            deleteFromFavorites( place.id ) 
+            showCards( places )
+            favoriteButton.textContent = "Add to Favorites"
+        }
+    } else {
+        favoriteButton.textContent = "Add to Favorites"
+        favoriteButton.onclick = () => { 
+            addToFavorites( place ) 
+            showCards( places )
+            favoriteButton.textContent = "Remove from Favorites"
+        }
+    }
 
     document.getElementById( "placeModal" ).style.display = "block"
 }
@@ -76,31 +92,21 @@ window.addEventListener( "click", ( event ) => {
 
 // ---Favorites implementation start--
 
-const onFaveClick = (place) => {
-    try {
-        if ( favorites.includes( place.id ) ) {
-            alert( `${place.name} is already in favorites.` )
-        } else {
-            favorites.push( place.id )
-            alert( `${place.name} added to favorites!` )
-        }
-        showCards( places )
+
+const addToFavorites = ( place ) => {
+    try {        
+        favorites.push( place.id )
+        alert( `${place.name} added to favorites!` )        
     } catch (error) {
         console.log( error )       
     }
 }
 
-const addToFavorites = () => {
+const deleteFromFavorites = ( faveID ) => {
     try {        
-        
-    } catch ( error ) {
-        console.log( error )
-    }
-}
-
-const deleteFromFavorites = () => {
-    try {        
-        
+        const index = favorites.indexOf( faveID )
+        favorites.splice( index, 1 )
+        alert( "Removed from favorites" )
     } catch ( error ) {
         console.log( error )
     }
