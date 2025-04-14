@@ -1,3 +1,10 @@
+let places = []
+const favorites = []
+let currentPage = 'home'
+let placeID = 0
+
+// ---Cloning cards from templete start---
+
 const showCards = ( placesToDisplay ) => {
     //console.log(placesToDisplay)
     
@@ -17,6 +24,8 @@ const showCards = ( placesToDisplay ) => {
 
 
 const editCardContent = ( card, place ) => {
+    //console.log( place )
+    
     card.style.display = "block"
     card.dataset.placeId = place.id
 
@@ -31,18 +40,39 @@ const editCardContent = ( card, place ) => {
     cardDetail1.textContent = `Country: ${place.country}`
 
     const cardDetail2 = card.querySelector( ".type-info" )
-    cardDetail2.textContent = place.type
+    cardDetail2.textContent = place.details.type
 
     const cardDetail3 = card.querySelector( ".visitors-info" )
-    cardDetail3.textContent = `${place.visitors} visitors`
+    cardDetail3.textContent = `${place.details.visitors} visitors`
 
     const cardImage = card.querySelector( "img" )
-    cardImage.src = place.image
-    cardImage.alt = `${place.name} image`
+    cardImage.src = place.details.imageDetails.url
+    cardImage.alt = place.details.imageDetails.alt
 }
 
+// ---Cloning cards from templete end---
+
+
+// ---DOM content loading start---
+
+const updatePlaces = () => {
+    try {
+        monuments.countries.forEach( country => {
+            country.places.forEach( place => { 
+                place.id = placeID++
+                place.country = country.countryName
+                places.push( place )
+            } )
+        })
+    } catch ( error ) {
+        console.log( 'updatePlaces error: ' + error )       
+    }
+}
 
 document.addEventListener( "DOMContentLoaded", () => { 
+    updatePlaces()
+    //console.log( places )
+    
     showCards( places ) 
 
     const home = document.getElementById( "home" )
@@ -78,16 +108,19 @@ document.addEventListener( "DOMContentLoaded", () => {
 
 } )
 
+// ---DOM content loading end---
+
 
 // ---Place details modal start---
+
 const showPlaceModal = ( place ) => {
     document.getElementById( "modalTitle" ).textContent = place.name
     document.getElementById( "modalCountry" ).textContent = `Country: ${place.country}`
-    document.getElementById( "modalType" ).textContent = `${place.type}`
-    document.getElementById( "modalVisitors" ).textContent = `${place.visitors} visitors`
-    document.getElementById( "modalImage" ).src = place.image
-    document.getElementById( "modalImage" ).alt = `${place.name} image`  
-    document.getElementById( "modalDetails" ).textContent = place.details
+    document.getElementById( "modalType" ).textContent = `${place.details.type}`
+    document.getElementById( "modalVisitors" ).textContent = `${place.details.visitors} visitors`
+    document.getElementById( "modalImage" ).src = place.details.imageDetails.url
+    document.getElementById( "modalImage" ).alt =  place.details.imageDetails.alt
+    document.getElementById( "modalDetails" ).textContent = place.details.description
 
 
     // deciding what to show when modal opened
@@ -127,15 +160,15 @@ window.addEventListener( "click", ( event ) => {
 
 // ---Place details modal end---
 
-// ---Favorites implementation start--
 
+// ---Favorites implementation start--
 
 const addToFavorites = ( place ) => {
     try {        
         favorites.push( place.id )
         alert( `${place.name} added to favorites!` )        
     } catch (error) {
-        console.log( error )       
+        console.log( 'addToFavorites error: ' + error )       
     }
 }
 
@@ -145,7 +178,7 @@ const deleteFromFavorites = ( faveID ) => {
         favorites.splice( index, 1 )
         alert( "Removed from favorites" )
     } catch ( error ) {
-        console.log( error )
+        console.log( 'deleteFromFavorites error: ' + error )
     }
 }
 
@@ -167,14 +200,14 @@ const searchPlaces = ( event ) => {
             return (
                 place.name.toLowerCase().includes( queryString ) ||
                 place.country.toLowerCase().includes( queryString ) ||
-                place.type.toLowerCase().includes( queryString )
+                place.details.type.toLowerCase().includes( queryString )
             )
         })
 
         showCards( matches )
         
     } catch ( error ) {
-        console.log( error )        
+        console.log( 'searchPlaces error: ' + error )        
     }
 }
 
@@ -185,7 +218,7 @@ const sortPlacesAlphabetically = () => {
         showCards( sortedPlaces )
         //console.log( sortedPlaces )
     } catch ( error ) {
-        console.log( error )
+        console.log( 'sortPlacesAlphabetically error: ' + error ) 
     }
 }
 
@@ -196,7 +229,7 @@ const sortPlacesOnVisitorCount = () => {
         showCards( sortedPlaces )
         //console.log( sortedPlaces )
     } catch ( error ) {
-        console.log( error )
+        console.log( 'sortPlacesOnVisitorCount error: ' + error ) 
     }
 }
 
@@ -221,7 +254,7 @@ document.getElementById( "sortBy" ).addEventListener( "change", ( event ) => {
         }
 
     } catch ( error ) {
-        console.log( error )
+        console.log( 'sortBy event listener error: ' + error )
         
     }
 })
