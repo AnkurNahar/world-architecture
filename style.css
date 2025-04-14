@@ -99,6 +99,21 @@ html,body {
     font-size: 1.5rem;
     font-weight: bold;
   }
+
+  .nav-logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 8px 12px;
+    display: inline-block;
+    transition: background 0.3s ease;
+    border-radius: 4px;
+  }
+  
+  .nav-logo a:hover {
+    background-color: #575757;
+  }
   
   .nav-links {
     list-style: none;
@@ -122,33 +137,67 @@ html,body {
     background-color: #575757;
     border-radius: 4px;
   }
+
+  .sort-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0 20px;
+  }
+  
+  .sort-dropdown {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+
+  .main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  #searchWrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    width: 100%;      /* Ensures full width inside main-container */
+    box-sizing: border-box;
+  }
   
   .search-form {
     display: flex;
     align-items: center;
-    margin-left: auto;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: white;
   }
   
   .search-form input {
-    padding: 5px 10px;
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 1rem;
     border: none;
-    border-radius: 4px 0 0 4px;
     outline: none;
   }
   
   .search-form button {
-    padding: 5px 10px;
+    padding: 10px 15px;
     border: none;
-    background-color: #575757;
+    background-color: #007BFF;
     color: white;
-    border-radius: 0 4px 4px 0;
+    font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s ease;
   }
   
   .search-form button:hover {
-    background-color: #777;
+    background-color: #0056b3;
   }
+  
   
   .modal {
     display: none;

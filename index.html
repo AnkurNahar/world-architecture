@@ -12,68 +12,70 @@
   <body>
 
     <nav class="navbar">
-      <div class="nav-logo">WorldArchitecture</div>
+      <div class="nav-logo"><a href="#" id="home">World Architecture</a></div>
       <ul class="nav-links">
-        <li><a href="#" id="home">Home</a></li>
+       <!-- <li><a href="#" id="home">Home</a></li> -->
         <li><a href="#" id="faves">Favorites</a></li>
-        <li>
-          <select id="sortBy" class="sort-dropdown">
-            <option value="">Sort By</option>
-            <option value="name">Name (A–Z)</option>
-            <option value="visitors">Visitor Count</option>
-          </select>
-        </li>
       </ul>
 
     </nav>
 
-    <div id="searchWrapper">
-      <form class="search-form" onsubmit="return searchPlaces( event )">
-        <input type="text" name="query" placeholder="Search..." />
-        <button type="submit">🔍</button>
-      </form>
-    </div>
-
-    <p id="noFavorites" style="display: none; text-align: center; font-size: 1.2rem; margin-top: 20px;">
-      You have no favorites yet.
-    </p>
-
-    <div id="placeModal" class="modal" style="display: none;">
-      <div class="modal-content">
-        <span id="closeModal" class="close-button">&times;</span>
-        <h2 id="modalTitle"></h2>
-        <img id="modalImage" src="" 
-        alt="" 
-        style="max-width: 100%; height: auto;" 
-        />
-
-        <div class="favorite-button-wrapper">
-          <button id="favoriteButton" class="favorite-button"></button>
-        </div>
-
-        <p id="modalCountry"></p>
-        <p id="modalType"></p>
-        <p id="modalVisitors"></p>
-        <p id="modalDetails"></p> 
-
+    <div class="main-container">
+      <div id="searchWrapper">
+        <form class="search-form" onsubmit="return searchPlaces( event )">
+          <input type="text" name="query" placeholder="Search..." />
+          <button type="submit">🔍</button>
+        </form>
       </div>
-    </div>
-    
-    
-    <div id="card-container"></div>
-    <div class="card" style="display: none">
-        <div class="card-content">
-            <div class="card-header">
-                <h3 class="card-title">Place Name</h3>
-                <div class="heart">❤️</div>
-            </div>
-            <img src="" alt="place image" />
-            <div class="card-info">
-                <h4 class="country-info">Country</h4>
-                <h4 class="type-info">Type</h4>
-                <h5 class="visitors-info">Visitors</h5>
-            </div>
+
+      <div id="sortWrapper" class="sort-wrapper">
+        <select id="sortBy" class="sort-dropdown">
+          <option value="">Sort By</option>
+          <option value="name">Name (A–Z)</option>
+          <option value="visitors">Visitor Count</option>
+        </select>
+      </div>
+  
+      <p id="noFavorites" style="display: none; text-align: center; font-size: 1.2rem; margin-top: 20px;">
+        You have no favorites yet.
+      </p>
+  
+      <div id="placeModal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <span id="closeModal" class="close-button">&times;</span>
+          <h2 id="modalTitle"></h2>
+          <img id="modalImage" src="" 
+          alt="" 
+          style="max-width: 100%; height: auto;" 
+          />
+  
+          <div class="favorite-button-wrapper">
+            <button id="favoriteButton" class="favorite-button"></button>
+          </div>
+  
+          <p id="modalCountry"></p>
+          <p id="modalType"></p>
+          <p id="modalVisitors"></p>
+          <p id="modalDetails"></p> 
+  
         </div>
+      </div>
+      
+      <div id="card-container"></div>
+      <div class="card" style="display: none">
+          <div class="card-content">
+              <div class="card-header">
+                  <h3 class="card-title">Place Name</h3>
+                  <div class="heart">❤️</div>
+              </div>
+              <img src="" alt="place image" />
+              <div class="card-info">
+                  <h4 class="country-info">Country</h4>
+                  <h4 class="type-info">Type</h4>
+                  <h5 class="visitors-info">Visitors</h5>
+              </div>
+          </div>
+      </div>
     </div>    
 
   </body>

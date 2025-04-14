@@ -48,13 +48,15 @@ document.addEventListener( "DOMContentLoaded", () => {
     const home = document.getElementById( "home" )
     const faves = document.getElementById( "faves" )
     const searchBar = document.getElementById( "searchWrapper" )
+    const sortBox = document.getElementById( "sortWrapper" )
     const noFaves = document.getElementById( "noFavorites" )
 
     home.addEventListener( "click", ( event ) => {
         event.preventDefault()
         currentPage = 'home'
         noFaves.style.display = "none"
-        searchBar.style.display = "block"
+        searchBar.style.display = "flex"
+        sortBox.style.display = "flex"
         showCards( places )
     })
 
@@ -62,6 +64,7 @@ document.addEventListener( "DOMContentLoaded", () => {
         event.preventDefault()
         currentPage = 'favorites'
         searchBar.style.display = "none"
+        sortBox.style.display = "none"
         let favoritePlaces = places.filter( place => favorites.includes( place.id ) )
 
         if ( favoritePlaces.length > 0 ) {
