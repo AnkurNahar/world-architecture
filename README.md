@@ -6,6 +6,7 @@ Explore iconic architectural landmarks from around the world.
 
 - Built with **Vanilla JS, HTML, and CSS**
 - **Sort** places alphabetically or by visitor count
+- **Search** by name, type, or country
 - **Filter** by monument type
 - **Add/Remove** places from favorites
 - **View details** of a place in a modal on click
