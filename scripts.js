@@ -14,7 +14,7 @@ const filterStatus = new Map([
 // ---Cloning cards from templete start---
 
 const showCards = ( placesToDisplay ) => {
-    //console.log(placesToDisplay)
+    //console.log( placesToDisplay )
     
     const cardContainer = document.getElementById( 'card-container' )
     cardContainer.innerHTML = ''
@@ -122,6 +122,7 @@ const showPlaceModal = ( place ) => {
     document.getElementById( 'modalImage' ).src = place.details.imageDetails.url
     document.getElementById( 'modalImage' ).alt =  place.details.imageDetails.alt
     document.getElementById( 'modalDetails' ).textContent = place.details.description
+    document.getElementById( 'photoCredit' ).textContent = `Image: ${place.details.imageDetails.src}`
 
 
     // deciding what to show when modal opened
