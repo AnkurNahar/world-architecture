@@ -21,19 +21,21 @@
     </nav>
 
     <div class="main-container">
-      <div id="searchWrapper">
-        <form class="search-form" onsubmit="return searchPlaces( event )">
-          <input type="text" name="query" placeholder="Search..." />
-          <button type="submit">🔍</button>
-        </form>
-      </div>
-
-      <div id="sortWrapper" class="sort-wrapper">
-        <select id="sortBy" class="sort-dropdown">
-          <option value="">Sort By</option>
-          <option value="name">Name (A–Z)</option>
-          <option value="visitors">Visitor Count</option>
-        </select>
+      <div id="sortSearchWrapper">
+        <div id="searchWrapper">
+          <form class="search-form" onsubmit="return searchPlaces( event )">
+            <input type="text" name="query" placeholder="Search..." />
+            <button type="submit">🔍</button>
+          </form>
+        </div>
+  
+        <div id="sortWrapper" class="sort-wrapper">
+          <select id="sortBy" class="sort-dropdown">
+            <option value="">Sort By</option>
+            <option value="name">Name (A–Z)</option>
+            <option value="visitors">Visitor Count</option>
+          </select>
+        </div>
       </div>
   
       <p id="noFavorites" style="display: none; text-align: center; font-size: 1.2rem; margin-top: 20px;">
