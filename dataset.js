@@ -59,7 +59,7 @@
           name: "St. Louis Cathedral",
           details: {
             visitors: 700000,
-            type: "religious monument",
+            type: "religious_monument",
             description: "An emblematic religious landmark in New Orleans, Louisiana, St. Louis Cathedral captivates with its enduring beauty and storied history. Its intricate design reflects centuries of cultural and architectural evolution.",
             imageDetails: {
               url: "https://upload.wikimedia.org/wikipedia/commons/b/ba/St._Louis_Cathedral_%28New_Orleans%29.jpg",
@@ -129,7 +129,7 @@
           name: "Zebun Nessa Mosque",
           details: {
             visitors: 30000,
-            type: "religious monument",
+            type: "religious_monument",
             description: "Completed in 2023 in Ashulia, Dhaka, the Zebun Nessa Mosque is a modern architectural marvel designed by Studio Morphogenesis under Saiqa Iqbal Meghna. Constructed with pink concrete, the mosque features a monolithic structure with a central dome and four enclosed gardens that enhance natural light and ventilation. Its design integrates sustainable features like recycled water systems and a translucent glass mihrab. Recognized by Time Magazine as one of the World's Greatest Places of 2025, it serves as both a spiritual sanctuary and an architectural landmark.",
             imageDetails: {
               url: "https://www.stirworld.com/images/article_gallery/zebun-nessa-mosque-by-saiqa-iqbal-meghna-zebun-nessa-mosque-saiqa-iqbal-meghna-stirworld-240625044751.jpg",
@@ -199,7 +199,7 @@
           name: "Sultan Ahmed Mosque (Blue Mosque)",
           details: {
             visitors: 1500000,
-            type: "religious monument",
+            type: "religious_monument",
             description: "Known for its stunning blue-tiled interior and commanding domes, the Blue Mosque is an enduring symbol of Ottoman craftsmanship. Its serene spirituality and vibrant history continue to captivate visitors.",
             imageDetails: {
               url: "https://upload.wikimedia.org/wikipedia/commons/f/fe/The_Blue_Mosque_at_sunset.jpg",
@@ -269,7 +269,7 @@
           name: "Catedral Metropolitana de Brasília",
           details: {
             visitors: 300000,
-            type: "religious monument",
+            type: "religious_monument",
             description: "Boasting a hyperboloid design that challenges traditional forms, this cathedral is a landmark of modern religious architecture. Its airy interior and striking structure invite quiet contemplation.",
             imageDetails: {
               url: "https://commons.wikimedia.org/wiki/File:Catedral_Metropolitana_de_Bras%C3%ADlia_-_vis%C3%A3o_noturna_01.jpg",
