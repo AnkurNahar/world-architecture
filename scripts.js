@@ -39,11 +39,8 @@ const editCardContent = ( card, place ) => {
     const cardDetail1 = card.querySelector( ".country-info" )
     cardDetail1.textContent = `Country: ${place.country}`
 
-    const cardDetail2 = card.querySelector( ".type-info" )
-    cardDetail2.textContent = place.details.type
-
     const cardDetail3 = card.querySelector( ".visitors-info" )
-    cardDetail3.textContent = `${place.details.visitors} visitors`
+    cardDetail3.textContent = `Estimated visitors per year : ${place.details.visitors}`
 
     const cardImage = card.querySelector( "img" )
     cardImage.src = place.details.imageDetails.url
@@ -116,8 +113,7 @@ document.addEventListener( "DOMContentLoaded", () => {
 const showPlaceModal = ( place ) => {
     document.getElementById( "modalTitle" ).textContent = place.name
     document.getElementById( "modalCountry" ).textContent = `Country: ${place.country}`
-    document.getElementById( "modalType" ).textContent = `${place.details.type}`
-    document.getElementById( "modalVisitors" ).textContent = `${place.details.visitors} visitors`
+    document.getElementById( "modalVisitors" ).textContent = `Estimated visitors per year: ${place.details.visitors}`
     document.getElementById( "modalImage" ).src = place.details.imageDetails.url
     document.getElementById( "modalImage" ).alt =  place.details.imageDetails.alt
     document.getElementById( "modalDetails" ).textContent = place.details.description
@@ -205,6 +201,7 @@ const searchPlaces = ( event ) => {
         })
 
         showCards( matches )
+        event.target.query.value = ""
         
     } catch ( error ) {
         console.log( 'searchPlaces error: ' + error )        
