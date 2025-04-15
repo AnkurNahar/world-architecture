@@ -6,7 +6,7 @@
         {
           name: "Boston Public Library, McKim Building",
           details: {
-            visitors: 4000000,
+            visitors: 2332152,
             type: "library",
             description: "The McKim Building is the main branch of the Boston Public Library at Copley Square in Boston, Massachusetts.",
             imageDetails: {
@@ -45,7 +45,7 @@
         {
           name: "Gateway Arch",
           details: {
-            visitors: 2422836,
+            visitors: 1618774,
             type: "landmark",
             description: "The Gateway Arch is a 630-foot-tall (192 m) monument in St. Louis, Missouri, United States. Clad in stainless steel and built in the form of a weighted catenary arch",
             imageDetails: {
@@ -58,7 +58,7 @@
         {
           name: "St. Louis Cathedral",
           details: {
-            visitors: 17530000,
+            visitors: "Not Available", 
             type: "religious_monument",
             description: "St. Louis Cathedral, is a Catholic cathedral and basilica in New Orleans, Louisiana.",
             imageDetails: {
@@ -89,7 +89,7 @@
         {
           name: "Bangladesh Military Museum",
           details: {
-            visitors: 400000,
+            visitors: "Not Available",
             type: "museum",
             description: "The museum has a collection of Bangladesh's military history, heritage, success stories and various weapons and ammunition.",
             imageDetails: {
@@ -159,7 +159,7 @@
         {
           name: "Istanbul Archaeology Museums",
           details: {
-            visitors: 578134,
+            visitors: 578000,
             type: "museum",
             description: "The Istanbul Archaeology Museums are a group of three archaeological museums located in the Eminönü quarter of Istanbul,",
             imageDetails: {
@@ -198,7 +198,7 @@
         {
           name: "Sultan Ahmed Mosque (Blue Mosque)",
           details: {
-            visitors: 4500000,
+            visitors: 4000000,
             type: "religious_monument",
             description: "The Blue Mosque, officially the Sultan Ahmed Mosque is an Ottoman-era historical imperial mosque located in Istanbul, Turkey.",
             imageDetails: {
@@ -229,7 +229,7 @@
         {
           name: "The Museum of Tomorrow",
           details: {
-            visitors: 7000000,
+            visitors: 215800,
             type: "museum",
             description: "The Museum of Tomorrow (Portuguese: Museu do Amanhã) is a science museum in the city of Rio de Janeiro, Brazil. ",
             imageDetails: {
@@ -242,7 +242,7 @@
         {
           name: "Ibirapuera Park",
           details: {
-            visitors: 14400000,
+            visitors: 18000000,
             type: "park",
             description: "It is claimed to be the most visited urban park in South America, is listed as one of the best parks in the world, and has been described as a green oasis at the heart of a concrete jungle.",
             imageDetails: {
@@ -268,7 +268,7 @@
         {
           name: "Catedral Metropolitana de Brasília",
           details: {
-            visitors: "Not Available",
+            visitors: 1000000,
             type: "religious_monument",
             description: "The Cathedral of Brasília (Portuguese: Catedral Metropolitana de Brasília)is the Roman Catholic cathedral serving Brasília, Brazil, and serves as the seat of the Archdiocese of Brasília.",
             imageDetails: {
