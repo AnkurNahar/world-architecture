@@ -147,7 +147,7 @@ const showPlaceModal = ( place ) => {
             addToFavorites( place ) 
             favoriteButton.textContent = 'Remove from Favorites'
         } 
-        applyFilters()       
+        applyFilters( places )       
     }
 
     document.getElementById( 'placeModal' ).style.display = 'block'
@@ -193,16 +193,16 @@ const deleteFromFavorites = ( faveID ) => {
 
 // ---Filtering starts---
 
-const applyFilters = () => {
+const applyFilters = ( placesToFilter ) => {
     try {
-        const matches = places.filter( ( place ) => {
+        const matches = placesToFilter.filter( ( place ) => {
             return ( activeFilters.includes( place.details.type ) )
         })
           
         if ( activeFilters.length > 0 ) 
             showCards( matches )
         else 
-            showCards( places )
+            showCards( placesToFilter )
 
     } catch ( error ) {
         console.log( 'Filtering error: ' + error );        
@@ -222,7 +222,7 @@ document.querySelectorAll( '.filter-btn' ).forEach( button => {
           activeFilters.push( id )
         }
       })
-      applyFilters()
+      applyFilters( places )
 
       // changing button style
       button.classList.toggle( 'selected', updatedStatus == 1 )  
@@ -263,7 +263,7 @@ const sortPlacesAlphabetically = () => {
     try {        
         let sortedPlaces = currentPage == 'home' ? [...places] : places.filter( place => favorites.includes( place.id ) )
         sortedPlaces.sort( ( place1, place2 ) => {return place1.name.localeCompare( place2.name )} )
-        showCards( sortedPlaces )
+        applyFilters( sortedPlaces )
         //console.log( sortedPlaces )
     } catch ( error ) {
         console.log( 'sortPlacesAlphabetically error: ' + error ) 
@@ -274,9 +274,8 @@ const sortPlacesOnVisitorCount = () => {
     try {        
         let sortedPlaces = currentPage == 'home' ? [...places] : places.filter( place => favorites.includes( place.id ) )
         sortedPlaces.sort( ( a, b ) => b.details.visitors - a.details.visitors )
-        console.log( sortedPlaces )
         
-        showCards( sortedPlaces )
+        applyFilters( sortedPlaces )
         //console.log( sortedPlaces )
     } catch ( error ) {
         console.log( 'sortPlacesOnVisitorCount error: ' + error ) 
