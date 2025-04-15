@@ -21,19 +21,30 @@
     </nav>
 
     <div class="main-container">
-      <div id="searchWrapper">
-        <form class="search-form" onsubmit="return searchPlaces( event )">
-          <input type="text" name="query" placeholder="Search..." />
-          <button type="submit">🔍</button>
-        </form>
-      </div>
 
-      <div id="sortWrapper" class="sort-wrapper">
-        <select id="sortBy" class="sort-dropdown">
-          <option value="">Sort By</option>
-          <option value="name">Name (A–Z)</option>
-          <option value="visitors">Visitor Count</option>
-        </select>
+      <div id="sortSearchFilterWrapper">
+        <div id="searchWrapper">
+          <form class="search-form" onsubmit="return searchPlaces( event )">
+            <input type="text" name="query" placeholder="Search..." />
+            <button type="submit">🔍</button>
+          </form>
+        </div>
+
+        <div id="filterWrapper" class="filter-wrapper">
+          <button type="button" class="filter-btn" id="museum">Museums</button>
+          <button type="button" class="filter-btn" id="park">Parks</button>
+          <button type="button" class="filter-btn" id="library">Libraries</button>
+          <button type="button" class="filter-btn" id="religious_monument">Religious Monuments</button>
+          <button type="button" class="filter-btn" id="landmark">Landmarks</button>
+        </div>
+  
+        <div id="sortWrapper" class="sort-wrapper">
+          <select id="sortBy" class="sort-dropdown">
+            <option value="">Sort By</option>
+            <option value="name">Name (A–Z)</option>
+            <option value="visitors">Visitor Count</option>
+          </select>
+        </div>
       </div>
   
       <p id="noFavorites" style="display: none; text-align: center; font-size: 1.2rem; margin-top: 20px;">
@@ -66,13 +77,12 @@
           <div class="card-content">
               <div class="card-header">
                   <h3 class="card-title">Place Name</h3>
-                  <div class="heart">❤️</div>
               </div>
               <img src="" alt="place image" />
               <div class="card-info">
                   <h4 class="country-info">Country</h4>
-                  <h4 class="type-info">Type</h4>
                   <h5 class="visitors-info">Visitors</h5>
+                  <div class="heart">❤️</div>                 
               </div>
           </div>
       </div>
@@ -82,7 +92,7 @@
 
   <!-- importing js files here instead of header 
    so it won't block html rendering before DOM elements exist -->
-  <script src="data.js"></script>
+  <script src="dataset.js"></script>
   <script src="scripts.js"></script>
   
 
