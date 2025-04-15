@@ -23,9 +23,9 @@ const showCards = ( placesToDisplay ) => {
     placesToDisplay.forEach( place => {
         const nextCard = templateCard.cloneNode( true ) // Copies template card
         editCardContent( nextCard, place ) // Edits card info
-        nextCard.addEventListener('click', () => { // Event listener to display details modal
+        nextCard.addEventListener( 'click', () => { // Event listener to display details modal
             showPlaceModal( place )
-        })
+        } )
         cardContainer.appendChild( nextCard ) // Adds new card to the container
     } )
 }
@@ -36,6 +36,7 @@ const editCardContent = ( card, place ) => {
     
     card.style.display = 'block'
     card.dataset.placeId = place.id
+    let visitorCount = place.details.visitors == 0 ? 'N/A' : place.details.visitors
 
     const heart = card.querySelector( '.heart' )
     const isFave = favorites.includes( place.id )
@@ -48,7 +49,7 @@ const editCardContent = ( card, place ) => {
     cardDetail1.textContent = `Country: ${place.country}`
 
     const cardDetail3 = card.querySelector( '.visitors-info' )
-    cardDetail3.textContent = `Estimated visitors per year : ${place.details.visitors}`
+    cardDetail3.textContent = `Estimated visitors per year : ${visitorCount}`
 
     const cardImage = card.querySelector( 'img' )
     cardImage.src = place.details.imageDetails.url
@@ -64,11 +65,12 @@ const updatePlaces = () => {
     try {
         monuments.countries.forEach( country => {
             country.places.forEach( place => { 
+                place.details.visitors = isNaN( place.details.visitors ) ? 0 : place.details.visitors
                 place.id = placeID++
                 place.country = country.countryName
                 places.push( place )
             } )
-        })
+        } )
     } catch ( error ) {
         console.log( 'updatePlaces error: ' + error )       
     }
@@ -116,9 +118,11 @@ document.addEventListener( 'DOMContentLoaded', () => {
 // ---Place details modal start---
 
 const showPlaceModal = ( place ) => {
+    let visitorCount = place.details.visitors == 0 ? 'N/A' : place.details.visitors
+
     document.getElementById( 'modalTitle' ).textContent = place.name
     document.getElementById( 'modalCountry' ).textContent = `Country: ${place.country}`
-    document.getElementById( 'modalVisitors' ).textContent = `Estimated visitors per year: ${place.details.visitors}`
+    document.getElementById( 'modalVisitors' ).textContent = `Estimated visitors per year: ${visitorCount}`
     document.getElementById( 'modalImage' ).src = place.details.imageDetails.url
     document.getElementById( 'modalImage' ).alt =  place.details.imageDetails.alt
     document.getElementById( 'modalDetails' ).textContent = place.details.description
@@ -127,7 +131,7 @@ const showPlaceModal = ( place ) => {
 
     // deciding what to show when modal opened
     let isFave = favorites.includes( place.id )
-    const favoriteButton = document.getElementById('favoriteButton')
+    const favoriteButton = document.getElementById( 'favoriteButton' )
     if ( isFave ) {
         favoriteButton.textContent = 'Remove from Favorites'
     } else {
@@ -205,10 +209,10 @@ const applyFilters = () => {
     }
 }
 
-document.querySelectorAll( '.filter-btn' ).forEach(button => {
+document.querySelectorAll( '.filter-btn' ).forEach( button => {
     button.addEventListener( 'click', () => {
       const id = button.id
-      let activeStatus = filterStatus.get(id)
+      let activeStatus = filterStatus.get( id )
       let updatedStatus = activeStatus == 1 ? 0 : 1
       filterStatus.set( id, updatedStatus )
 
@@ -258,7 +262,7 @@ const searchPlaces = ( event ) => {
 const sortPlacesAlphabetically = () => {
     try {        
         let sortedPlaces = currentPage == 'home' ? [...places] : places.filter( place => favorites.includes( place.id ) )
-        sortedPlaces.sort( ( place1, place2 ) => {return place1.name.localeCompare(place2.name)} )
+        sortedPlaces.sort( ( place1, place2 ) => {return place1.name.localeCompare( place2.name )} )
         showCards( sortedPlaces )
         //console.log( sortedPlaces )
     } catch ( error ) {
@@ -269,7 +273,9 @@ const sortPlacesAlphabetically = () => {
 const sortPlacesOnVisitorCount = () => {
     try {        
         let sortedPlaces = currentPage == 'home' ? [...places] : places.filter( place => favorites.includes( place.id ) )
-        sortedPlaces.sort((a, b) => b.visitors - a.visitors)
+        sortedPlaces.sort( ( a, b ) => b.details.visitors - a.details.visitors )
+        console.log( sortedPlaces )
+        
         showCards( sortedPlaces )
         //console.log( sortedPlaces )
     } catch ( error ) {
